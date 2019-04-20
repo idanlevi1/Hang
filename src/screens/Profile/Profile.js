@@ -4,6 +4,7 @@ import styles from './Style';
 import { HeaderParallax, Button } from '../../components';
 import { flyColors } from '../../constants/Colors';
 import { inject, observer } from 'mobx-react/native';
+import i18n from '../../i18n';
 
 @inject('AppStore')
 @observer
@@ -24,7 +25,7 @@ export default class Profile extends React.Component {
       <HeaderParallax
         backgroundColor={flyColors.header}
         navbarColor={flyColors.header}
-        title="Profile"
+        title={i18n.t('profile')}
       >
         <View style={{ backgroundColor: flyColors.background }}>
           <Button text={'Edit Profile'} onPress={this.onEditProfile} />

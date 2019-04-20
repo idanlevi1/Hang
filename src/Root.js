@@ -35,7 +35,8 @@ export default class Root extends React.Component {
     // I18nManager.forceRTL(true);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await AppStore.getDictionary()
     setTimeout(() => {
       this.setState({ splash: false });
     }, 2500);
@@ -50,9 +51,9 @@ export default class Root extends React.Component {
         <React.Fragment>
           <App />
           {/*<Alert onRef={(ref) => { stores.AppStore.setAlertRef(ref) }} /> */}
-           {/*<Loader onRef={(ref) => { stores.AppStore.setLoaderRef(ref) }} />*/}
+          {/*<Loader onRef={(ref) => { stores.AppStore.setLoaderRef(ref) }} />*/}
         </React.Fragment>
-       </Provider>
+      </Provider>
     )
   }
 }
