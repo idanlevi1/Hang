@@ -36,6 +36,7 @@ export default class Root extends React.Component {
   }
 
   async componentDidMount() {
+    await AppStore.saveUserInfoData()
     await AppStore.getDictionary()
     setTimeout(() => {
       this.setState({ splash: false });
