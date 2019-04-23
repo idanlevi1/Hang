@@ -9,6 +9,9 @@ export default (styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2934',
   },
+  linearGradient:{
+    flex:1,
+  },
   title: {
     fontSize: 52,
     color: BRANDTS.darkSec,

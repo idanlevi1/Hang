@@ -2,12 +2,6 @@ import { StyleSheet } from 'react-native';
 import { width, height, IS_IPHONE_X, HEADER_HEIGHT, STATUS_BAR_HEIGHT, NAV_BAR_HEIGHT, IS_SMALL_DEVICE } from '../../constants/Layout';
 
 export default (styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'space-around',
-  //   alignItems: 'center',
-  //   backgroundColor: '#e939',
-  // },
   container: {
     flex: 1,
     backgroundColor: '#000'

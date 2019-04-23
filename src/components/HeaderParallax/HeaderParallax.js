@@ -25,7 +25,6 @@ export default class HeaderParallax extends React.Component {
               <Text>icon2</Text>
             </TouchableOpacity>
           }
-
         </View>
       </View>
     )

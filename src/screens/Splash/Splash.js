@@ -1,8 +1,9 @@
 import React from 'react';
 import { Animated, Easing, Image, View, Text } from 'react-native';
 import { createAnimation, createInterpolate } from '../../utils/Animation';
-import { BRANDTS } from '../../constants/Colors';
+import { BRANDTS, flyColors } from '../../constants/Colors';
 import styles from './Style';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class Splash extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class Splash extends React.Component {
     Animated.parallel([
       createAnimation(this.state.opacity, 1, 500, Easing.ease),
       createAnimation(this.state.spinAnim, 1, 1000, Easing.ease, 500, false),
-      createAnimation(this.state.yValueTitle,1,1200,Easing.cubic,300,false),
+      createAnimation(this.state.yValueTitle, 1, 1200, Easing.cubic, 300, false),
       createAnimation(this.state.xValueSubtitle, 1, 1000, Easing.linear, 300, false),
     ]).start();
   };
@@ -41,32 +42,19 @@ export default class Splash extends React.Component {
     );
 
     return (
-      <View
-        colors={[BRANDTS.primary, BRANDTS.primarySec, BRANDTS.light]}
-        style={{ flex: 1 }}
-      >
-        <Animated.View
-          style={[styles.container, { opacity: this.state.opacity }]}
-        >
-          <Animated.View
-            style={{ top: yTitleFall, transform: [{ rotate: spinTitle }] }}
-          >
+      <LinearGradient start={{ x: 0, y: .5 }} end={{ x: .5, y: 0 }} colors={[flyColors.text, flyColors.header, flyColors.background]} style={styles.linearGradient}>
+        <Animated.View style={[styles.container, { opacity: this.state.opacity }]} >
+          <Animated.View style={{ top: yTitleFall, transform: [{ rotate: spinTitle }] }} >
             <Text style={styles.title}>Just Hang</Text>
           </Animated.View>
-          <Animated.View
-            style={{
-              left: xSubtitleFall,
-              transform: [{ rotate: spinSubtitle }],
-            }}
-          >
+          <Animated.View style={{ left: xSubtitleFall, transform: [{ rotate: spinSubtitle }] }} >
             <Text style={styles.subtitle}>idan</Text>
           </Animated.View>
           <Image
             source={require('../../../assets/images/icon.png')}
-            style={styles.logo}
-          />
+            style={styles.logo} />
         </Animated.View>
-      </View>
+      </LinearGradient>
     );
   }
 }
