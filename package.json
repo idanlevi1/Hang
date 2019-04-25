@@ -4,7 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "release": "cd android && ./gradlew assembleRelease && cd ..",
+    "gradlewc": "cd android  && ./gradlew clean",
+    "reintegrate": "pod deintegrate && pod install",
+    "rmnode": "rm -rf node_modules/ && npm i",
+    "ra": "react-native run-android",
+    "ri": "react-native run-ios --simulator='iPhone 8'",
+    "rix": "react-native run-ios --simulator='iPhone X'"
   },
   "dependencies": {
     "jsc-android": "^236355.1.1",
