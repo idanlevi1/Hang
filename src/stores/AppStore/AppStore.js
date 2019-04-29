@@ -1,11 +1,10 @@
 
 
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, toJS } from 'mobx';
 import { observer, inject } from 'mobx-react/native';
 import { persist } from 'mobx-persist';
 // import Api from '../../server/Api'
 import I18n from '../../i18n'
-import DeviceInfo from 'react-native-device-info';
 
 class AppStore {
   @persist @observable rtl = false;
@@ -22,25 +21,8 @@ class AppStore {
   }
 
   @action
-  saveUserInfoData() {
-    const deviceId = DeviceInfo.getDeviceId()
-    const deviceLocale = DeviceInfo.getDeviceLocale()
-    const phoneNumber = DeviceInfo.getPhoneNumber()
-    const deviceCountry = DeviceInfo.getDeviceCountry()
-    const firstInstallTime = DeviceInfo.getFirstInstallTime()
-    const brand = DeviceInfo.getBrand();
-    const readableVersion = DeviceInfo.getReadableVersion();
-    console.log('[saveUserInfoData] - deviceId:', deviceId)
-    console.log('[saveUserInfoData] - deviceLocale:', deviceLocale)
-    console.log('[saveUserInfoData] - phoneNumber:', phoneNumber)
-    console.log('[saveUserInfoData] - deviceCountry:', deviceCountry)
-    console.log('[saveUserInfoData] - firstInstallTime:', firstInstallTime)
-    console.log('[saveUserInfoData] - brand:', brand)
-    console.log('[saveUserInfoData] - readableVersion:', readableVersion)
-  }
-
-  @action
   async getDictionary() {
+    console.log('[UserStore] - getDictionary')
     const res = { back: 'חזור', profile: 'פרופיל' }//await Api.getDictionary()
     I18n.locale = this.lang;
     I18n.defaultLocale = I18n.locale

@@ -1,28 +1,30 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
+import { AppState, AsyncStorage, I18nManager } from 'react-native';
 import { Splash } from './screens';
 import App from './routes/App';
 import { AppStore, UserStore } from './stores';
-// import { Loader } from './components';
+// import { Alert, Loader } from '../components';
 import { observer, Provider, inject } from 'mobx-react/native';
+import { create } from 'mobx-persist'
+// import RNRestart from 'react-native-restart';
 
 const stores = { AppStore, UserStore };
-// const hydrate = create({
-//   storage: AsyncStorage
-// });
+const hydrate = create({ storage: AsyncStorage });
 
-// hydrate('user', UserStore).then(() => {
-//   UserStore.hydrateDone();
-//   hydrate('rtl', AppStore).then(() => {
-//       if (!AppStore.isRtl) {
-//           I18nManager.forceRTL(true);
-//           I18nManager.allowRTL(true);
-//           AppStore.setRtl()
-//           RNRestart.Restart();
-//       }
-//   })
+hydrate('deviceInfo', UserStore).then(() => {
+  hydrate('user', UserStore).then(() => {
+    hydrate('rtl', AppStore).then(() => {
+      if (!AppStore.isRtl) {
+        I18nManager.forceRTL(true);
+        I18nManager.allowRTL(true);
+        AppStore.setRtl()
+        // RNRestart.Restart();
+      }
+      UserStore.hydrateDone();
+    })
+  })
 
-// });
+})
 
 @observer
 export default class Root extends React.Component {
@@ -32,19 +34,18 @@ export default class Root extends React.Component {
       splash: true,
       loggedIn: true,
     };
-    // I18nManager.forceRTL(true);
   }
 
   async componentDidMount() {
-    await AppStore.saveUserInfoData()
     await AppStore.getDictionary()
     setTimeout(() => {
       this.setState({ splash: false });
-    }, 2500);
+    }, 500);
   }
 
   render() {
-    if (this.state.splash) {
+    const ready = UserStore.isHydrateDone;
+    if (!ready) {
       console.log('Splash Screen 🥂🍟🍔');
       return <Splash />;
     } return (

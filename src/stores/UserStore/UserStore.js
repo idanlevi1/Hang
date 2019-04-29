@@ -1,13 +1,18 @@
-import { observable, action, computed, toJS } from 'mobx';
+import { observable, action, computed, toJS, entries } from 'mobx';
 import { observer, inject } from 'mobx-react/native';
 import { create, persist } from 'mobx-persist';
 import User from './User';
-// import DeviceInfo from 'react-native-device-info'
+import DeviceInfo from 'react-native-device-info'
+import {
+  createModelSchema, primitive, reference, list, object, identifier, serialize, deserialize, getDefaultModelSchema, serializable,
+} from 'serializr';
 
 class UserStore {
   @persist('object', User) @observable user = User;
   @persist('list') @observable promotions = []
   @observable isHydrateDone = false;
+  @persist @observable entriesNumber = 0;
+  @persist('object') @observable deviceInfo = null;
 
   @action
   setUser(phone, email, token) {
@@ -17,13 +22,40 @@ class UserStore {
   }
 
   @action
+  async hydrateDone() {
+    this.isHydrateDone = true;
+  }
+
+  @action
   setToken(token) {
     this.user.token = token;
   }
 
   @action
+  incEntriesNumber() {
+    this.entriesNumber = this.entriesNumber + 1;
+    console.log('[entriesNumber:]', this.entriesNumber)
+  }
+
+  @action
   logout() {
     this.token = null;
+  }
+
+  @action
+  saveUserInfoData() {
+    if (!this.deviceInfo) {
+      this.deviceInfo = {
+        deviceId: DeviceInfo.getDeviceId(),
+        deviceLocale: DeviceInfo.getDeviceLocale(),
+        phoneNumber: DeviceInfo.getPhoneNumber(),
+        deviceCountry: DeviceInfo.getDeviceCountry(),
+        firstInstallTime: DeviceInfo.getFirstInstallTime(),
+        brand: DeviceInfo.getBrand(),
+        readableVersion: DeviceInfo.getReadableVersion()
+      }
+    }
+    console.log('[deviceInfo]:', toJS(this.deviceInfo))
   }
 
   @computed
@@ -41,9 +73,9 @@ class UserStore {
     return this.user.phone;
   }
 
-  @action
-  async hydrateDone() {
-    this.isHydrateDone = true;
+  @computed
+  get getDeviceInfo() {
+    return toJS(this.deviceInfo);
   }
 
 }
