@@ -1,7 +1,6 @@
 
 
 import { observable, action, computed, toJS } from 'mobx';
-import { observer, inject } from 'mobx-react/native';
 import { persist } from 'mobx-persist';
 // import Api from '../../server/Api'
 import I18n from '../../i18n'

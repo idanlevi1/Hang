@@ -38,17 +38,27 @@ export default class Root extends React.Component {
 
   async componentDidMount() {
     await AppStore.getDictionary()
+    AppState.addEventListener('change', this._handleAppStateChange);
     setTimeout(() => {
       this.setState({ splash: false });
     }, 500);
   }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = async (nextAppState) => {
+    // console.log('_handleAppStateChange', nextAppState) //options: active || background || inactive 
+  };
 
   render() {
     const ready = UserStore.isHydrateDone;
     if (!ready) {
       console.log('Splash Screen 🥂🍟🍔');
       return <Splash />;
-    } return (
+    }
+    return (
       <Provider {...stores} >
         <React.Fragment>
           <App />

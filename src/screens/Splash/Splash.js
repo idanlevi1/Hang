@@ -1,7 +1,7 @@
 import React from 'react';
-import { Animated, Easing, Image, View, Text } from 'react-native';
+import { Animated, Easing, Image, Text } from 'react-native';
 import { createAnimation, createInterpolate } from '../../utils/Animation';
-import { BRANDTS, flyColors } from '../../constants/Colors';
+import { flyColors } from '../../constants/Colors';
 import styles from './Style';
 import LinearGradient from 'react-native-linear-gradient';
 

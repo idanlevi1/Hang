@@ -1,11 +1,7 @@
 import { observable, action, computed, toJS, entries } from 'mobx';
-import { observer, inject } from 'mobx-react/native';
-import { create, persist } from 'mobx-persist';
+import { persist } from 'mobx-persist';
 import User from './User';
 import DeviceInfo from 'react-native-device-info'
-import {
-  createModelSchema, primitive, reference, list, object, identifier, serialize, deserialize, getDefaultModelSchema, serializable,
-} from 'serializr';
 
 class UserStore {
   @persist('object', User) @observable user = User;
