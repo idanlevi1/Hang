@@ -25,7 +25,7 @@ export default class Profile extends React.Component {
       this.props.navigation.navigate('ProfileEdit')
       this.props.AppStore.hideLoader();
       console.log('set time out')
-    }, 1500);
+    }, 2000);
   }
 
   onShowAlert = () => {
