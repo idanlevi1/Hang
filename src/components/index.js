@@ -1,7 +1,7 @@
 import TabBarIcon from './TabBarIcon';
 import Button from './Button';
 import HeaderParallax from './HeaderParallax';
-// import Loader from './Loader';
+import Loader from './Loader';
+import Alert from './Alert';
 
-// export { Loader, HeaderParallax, TabBarIcon, Button };
-export { HeaderParallax, TabBarIcon, Button };
+export { Alert, Loader, HeaderParallax, TabBarIcon, Button };

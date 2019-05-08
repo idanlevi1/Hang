@@ -1,9 +1,8 @@
 import React from 'react';
-import { AppState, AsyncStorage, I18nManager } from 'react-native';
-import { Splash } from './screens';
+import { AppState, AsyncStorage, I18nManager, View } from 'react-native';
 import App from './routes/App';
 import { AppStore, UserStore } from './stores';
-// import { Alert, Loader } from '../components';
+import { Alert, Loader } from './components';
 import { observer, Provider, inject } from 'mobx-react/native';
 import { create } from 'mobx-persist'
 // import RNRestart from 'react-native-restart';
@@ -30,22 +29,16 @@ hydrate('deviceInfo', UserStore).then(() => {
 export default class Root extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      splash: true,
-      loggedIn: true,
-    };
+    this.state = {};
   }
 
   async componentDidMount() {
     await AppStore.getDictionary()
-    AppState.addEventListener('change', this._handleAppStateChange);
-    setTimeout(() => {
-      this.setState({ splash: false });
-    }, 500);
+    // AppState.addEventListener('change', this._handleAppStateChange);
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
+    // AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
   _handleAppStateChange = async (nextAppState) => {
@@ -55,15 +48,14 @@ export default class Root extends React.Component {
   render() {
     const ready = UserStore.isHydrateDone;
     if (!ready) {
-      console.log('Splash Screen 🥂🍟🍔');
-      return <Splash />;
+      return <View />
     }
     return (
       <Provider {...stores} >
         <React.Fragment>
           <App />
-          {/*<Alert onRef={(ref) => { stores.AppStore.setAlertRef(ref) }} /> */}
-          {/*<Loader onRef={(ref) => { stores.AppStore.setLoaderRef(ref) }} />*/}
+          <Alert onRef={(ref) => { stores.AppStore.setAlertRef(ref) }} />
+          <Loader onRef={(ref) => { stores.AppStore.setLoaderRef(ref) }} />
         </React.Fragment>
       </Provider>
     )

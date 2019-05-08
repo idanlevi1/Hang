@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native'
-import GStyle from "../../utils/GlobalStyles";
 
 const Styles = StyleSheet.create({
     container: {

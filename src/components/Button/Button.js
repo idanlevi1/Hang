@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './Style';
-import { Colors } from '../../constants/Colors';
 import AwesomeButton from 'react-native-really-awesome-button';
 // import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/rick';
 

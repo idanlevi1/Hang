@@ -1,30 +1,29 @@
 import { StyleSheet } from 'react-native';
-import { BRANDTS } from '../../constants/Colors';
-import { height, width } from '../../constants/Layout';
+import GStyle from '../../utils/GlobalStyles';
 
 export default (styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2934',
+    // backgroundColor: GStyle.BEIGE,
   },
-  linearGradient:{
-    flex:1,
+  linearGradient: {
+    flex: 1,
   },
   title: {
     fontSize: 52,
-    color: BRANDTS.darkSec,
+    color: GStyle.BLACK,
     fontWeight: '500',
   },
   subtitle: {
     fontSize: 26,
-    color: BRANDTS.light,
+    color: GStyle.BORDO,
   },
   logo: {
-    height: height * 0.22,
-    width: width * 0.34,
+    height: GStyle.HEIGHT * 0.22,
+    width: GStyle.WIDTH * 0.34,
     position: 'absolute',
-    top: height * 0.6,
+    top: GStyle.HEIGHT * 0.6,
   },
 }));

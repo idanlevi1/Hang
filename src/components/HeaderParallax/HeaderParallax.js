@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './Style';
-import { HEADER_HEIGHT } from '../../constants/Layout';
+import { HEADER_HEIGHT } from '../../utils/GlobalStyles';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
 
 export default class HeaderParallax extends React.Component {

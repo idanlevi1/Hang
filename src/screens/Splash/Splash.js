@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, Easing, Image, Text } from 'react-native';
 import { createAnimation, createInterpolate } from '../../utils/Animation';
-import { flyColors } from '../../constants/Colors';
+import GStyle from '../../utils/GlobalStyles';
 import styles from './Style';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -42,7 +42,7 @@ export default class Splash extends React.Component {
     );
 
     return (
-      <LinearGradient start={{ x: 0, y: .5 }} end={{ x: .5, y: 0 }} colors={[flyColors.text, flyColors.header, flyColors.background]} style={styles.linearGradient}>
+      <LinearGradient start={{ x: 0, y: .5 }} end={{ x: .5, y: 0 }} colors={[GStyle.GREEN, GStyle.ORANGE, GStyle.BEIGEDARK]} style={styles.linearGradient}>
         <Animated.View style={[styles.container, { opacity: this.state.opacity }]} >
           <Animated.View style={{ top: yTitleFall, transform: [{ rotate: spinTitle }] }} >
             <Text style={styles.title}>Just Hang</Text>

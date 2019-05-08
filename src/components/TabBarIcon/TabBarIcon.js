@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Ionicons } from '@expo/vector-icons';
 import { View, Text } from 'react-native';
-import { Colors } from '../../constants/Colors';
+import GStyle from '../../utils/GlobalStyles';
 
 export default class TabBarIcon extends React.Component {
   render() {
@@ -15,8 +15,8 @@ export default class TabBarIcon extends React.Component {
       <Text
         style={{
           color: this.props.focused
-            ? Colors.tabIconSelected
-            : Colors.tabIconDefault,
+            ? GStyle.CYAN
+            : GStyle.BEIGE,
         }}
       >
         {this.props.name}

@@ -3,8 +3,7 @@ import DashboardStack from './stacks/DashboardStack';
 import ProfileStack from './stacks/ProfileStack';
 import ThePlaceStack from './stacks/ThePlaceStack';
 import PromotionsStack from './stacks/PromotionsStack';
-import { BRANDTS } from '../constants/Colors';
-import {height} from '../constants/Layout';
+import GStyle from '../utils/GlobalStyles';
 
 export default (MainTabNavigator = createBottomTabNavigator(
   {
@@ -16,14 +15,14 @@ export default (MainTabNavigator = createBottomTabNavigator(
   {
     tabBarOptions: {
       style: {
-        backgroundColor: BRANDTS.dark,
+        backgroundColor: GStyle.BLACK,
         borderWidth: 2,
-        borderColor: BRANDTS.lightSec,
-        height: height * 0.1,
+        borderColor: GStyle.BLACK,
+        height: GStyle.HEIGHT * 0.1,
         padding: 2,
       },
-      activeTintColor: BRANDTS.primary,
-      inactiveTintColor: BRANDTS.light,
+      activeTintColor: GStyle.WHITE,
+      inactiveTintColor: GStyle.BLACK,
     },
   }
 ));

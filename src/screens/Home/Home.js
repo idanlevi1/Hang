@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './Style';
 import { Button, HeaderParallax } from '../../components';
-import { flyColors } from '../../constants/Colors'
+import GStyle from '../../utils/GlobalStyles';
 import Share from 'react-native-share'
 import Api from '../../server/Api'
 
@@ -39,14 +39,14 @@ export default class HOME extends React.Component {
     return (
       <HeaderParallax
         backgroundImage={require('../../../assets/images/Header/dashboard.jpg')}
-        backgroundColor={flyColors.header}
-        navbarColor={flyColors.header}
+        backgroundColor={GStyle.BLACK}
+        navbarColor={GStyle.BLACK}
         title='Home'>
-        <View style={{ backgroundColor: flyColors.background }}>
+        <View style={{ backgroundColor: GStyle.BEIGE }}>
           <TouchableOpacity onPress={this.onShare}>
-            <Text style={{fontSize:24, color: flyColors.header}}>Share</Text>
+            <Text style={{fontSize:24, color: GStyle.BEIGE}}>Share</Text>
           </TouchableOpacity>
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(e => <Text key={e} style={{ color: flyColors.text, fontSize: 24, padding: 5, margin: 10, borderBottomWidth: 1 }}>{e}</Text>)}
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(e => <Text key={e} style={{ color: GStyle.BLACK, fontSize: 24, padding: 5, margin: 10, borderBottomWidth: 1 }}>{e}</Text>)}
         </View>
       </HeaderParallax>
     );

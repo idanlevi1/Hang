@@ -4,6 +4,7 @@ import { observable, action, computed, toJS } from 'mobx';
 import { persist } from 'mobx-persist';
 // import Api from '../../server/Api'
 import I18n from '../../i18n'
+import he from '../../i18n/locales/he'
 
 class AppStore {
   @persist @observable rtl = false;
@@ -22,11 +23,12 @@ class AppStore {
   @action
   async getDictionary() {
     console.log('[UserStore] - getDictionary')
-    const res = { back: 'חזור', profile: 'פרופיל' }//await Api.getDictionary()
+    console.log('I18n', I18n)
+    const res = { profile: 'פרופיל' }//await Api.getDictionary()
     I18n.locale = this.lang;
     I18n.defaultLocale = I18n.locale
     I18n.translations = {
-      he: { ...res }
+      he: { ...he ,...res }
     }
   }
 
@@ -62,11 +64,13 @@ class AppStore {
 
   @action
   showLoader() {
+    console.log('showLoader')
     this.loaderVisible = true;
   }
 
   @action
   hideLoader() {
+    console.log('hideLoader')
     this.loaderVisible = false;
   }
 
