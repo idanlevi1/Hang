@@ -3,7 +3,7 @@ import { LoggedInStack, NonLoggedStack } from './AppNavigator';
 import { inject, observer } from 'mobx-react/native';
 import { Splash } from '../screens';
 
-@inject('AppStore', 'UserStore')
+@inject('AppStore', 'UserStore', 'RoutingStore')
 @observer
 export default class App extends React.Component {
   state = {
@@ -25,7 +25,7 @@ export default class App extends React.Component {
       return <Splash />;
     } else if (this.state.loggedIn) {
       console.log('Home Screen 🥂');
-      return <LoggedInStack />;
+      return <LoggedInStack ref={ref => { this.props.RoutingStore.setNavigation(ref) }} />;
     } else {
       console.log('Login Screen 🍔');
       return <NonLoggedStack />;

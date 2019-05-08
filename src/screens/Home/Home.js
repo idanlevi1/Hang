@@ -42,7 +42,7 @@ export default class HOME extends React.Component {
         backgroundColor={GStyle.BLACK}
         navbarColor={GStyle.BLACK}
         title='Home'>
-        <View style={{ backgroundColor: GStyle.BEIGE }}>
+        <View style={{ backgroundColor: GStyle.BEIGE_LIGHTEN }}>
           <TouchableOpacity onPress={this.onShare}>
             <Text style={{fontSize:24, color: GStyle.BEIGE}}>Share</Text>
           </TouchableOpacity>

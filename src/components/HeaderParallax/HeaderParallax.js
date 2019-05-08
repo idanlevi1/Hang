@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './Style';
 import { HEADER_HEIGHT } from '../../utils/GlobalStyles';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
+import { inject, observer } from 'mobx-react/native';
 
+@inject('RoutingStore')
+@observer
 export default class HeaderParallax extends React.Component {
 
   renderNavBar = () => {
@@ -34,6 +37,12 @@ export default class HeaderParallax extends React.Component {
     const { title, children, onScrollBeginDrag, onScrollEndDrag, navbarColor, imageScale, backgroundImage, backgroundColor } = this.props
     return (
       <View style={styles.container}>
+        <TouchableOpacity style={styles.hamburgerContainer} onPress={this.props.RoutingStore.openDrawer}>
+          <Image
+            resizeMode={'contain'}
+            source={require('../../../assets/images/icons/hamburger.png')}
+            style={styles.hamburgerIcon} />
+        </TouchableOpacity>
         <ReactNativeParallaxHeader
           headerMinHeight={HEADER_HEIGHT}
           headerMaxHeight={200}

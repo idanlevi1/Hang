@@ -1,4 +1,5 @@
 import { Dimensions, Platform } from 'react-native';
+import Color from "color";
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -27,6 +28,7 @@ const COLOR = {
   WHITE: 'rgb(255,255,255)',
   BLACK: 'rgb(0,0,0)',
   BEIGE: "rgb(238,219,187)",
+  BEIGE_LIGHTEN: Color("rgb(238,219,187)").lighten(0.1),
   GREEN: "rgb(1,159,21)",
   PINK: "rgb(233,53,115)",
   YELLOW: "rgb(247,167,28)",
@@ -34,7 +36,7 @@ const COLOR = {
   YELLOW_LIGHT: "rgb(255,220,55)",
   BORDO: "rgb(71,5,5)",
   BEIGEDARK: "rgb(202,150,104)",
-  // GREEN_PICKED: Color('rgb(1,159,21)').darken(0.3),
+  GREEN_PICKED: Color('rgb(1,159,21)').darken(0.3),
   GREEN_LIGHTEN: "rgb(202,255,183)",
   ORANGE: "rgb(246,60,15)",
   NEON: "rgb(210,210,230)"

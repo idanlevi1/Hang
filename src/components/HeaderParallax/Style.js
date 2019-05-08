@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { width, height, IS_IPHONE_X, HEADER_HEIGHT, STATUS_BAR_HEIGHT, NAV_BAR_HEIGHT, IS_SMALL_DEVICE } from '../../utils/GlobalStyles';
+import  GStyle from '../../utils/GlobalStyles';
 
 export default (styles = StyleSheet.create({
   container: {
@@ -10,15 +10,15 @@ export default (styles = StyleSheet.create({
     flexGrow: 1,
   },
   navContainer: {
-    height: HEADER_HEIGHT,
+    height: GStyle.HEADER_HEIGHT,
     marginHorizontal: 10,
   },
   statusBar: {
-    height: STATUS_BAR_HEIGHT,
+    height: GStyle.STATUS_BAR_HEIGHT,
     backgroundColor: 'transparent',
   },
   navBar: {
-    height: NAV_BAR_HEIGHT,
+    height: GStyle.NAV_BAR_HEIGHT,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
@@ -28,5 +28,18 @@ export default (styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  hamburgerContainer: {
+    position: 'absolute',
+    zIndex: 100,
+    borderRadius: 30,
+    backgroundColor: GStyle.BEIGE,
+    top: GStyle.HEADER_HEIGHT / 2.5,
+    left: GStyle.WIDTH * .05,
+    padding: 5,
+  },
+  hamburgerIcon: {
+    height: 50,
+    width: 50,
   },
 }));

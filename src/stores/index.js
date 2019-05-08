@@ -1,6 +1,5 @@
-import AppStore from './AppStore';
 import UserStore from './UserStore';
+import RoutingStore from './RoutingStore';
+import AppStore from './AppStore';
 
-export {
-  AppStore, UserStore,
-};
+export { RoutingStore, AppStore, UserStore };

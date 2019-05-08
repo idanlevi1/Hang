@@ -1,10 +1,10 @@
 import { createStackNavigator } from 'react-navigation';
-import MainTabNavigator from '../routes/MainTabNavigator';
+import MainDrawerNavigator from '../routes/MainDrawerNavigator';
 import LoginStack from '../routes/stacks/LoginStack';
 
 const LoggedInStack = createStackNavigator(
   {
-    App: MainTabNavigator,
+    App: MainDrawerNavigator,
   },
   {
     headerMode: 'none',

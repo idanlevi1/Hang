@@ -3,5 +3,6 @@ import Button from './Button';
 import HeaderParallax from './HeaderParallax';
 import Loader from './Loader';
 import Alert from './Alert';
+import SideMenu from './SideMenu';
 
-export { Alert, Loader, HeaderParallax, TabBarIcon, Button };
+export { SideMenu, Alert, Loader, HeaderParallax, TabBarIcon, Button };

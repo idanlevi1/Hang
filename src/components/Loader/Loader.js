@@ -26,6 +26,7 @@ export default class Loader extends Component {
 		return (AppStore.loaderVisible) &&
 			<View style={styles.container}>
 				<Image
+					resizeMode={'contain'}
 					source={require('../../../assets/images/Loader/full_screen.gif')}
 					style={styles.loader} />
 			</View>

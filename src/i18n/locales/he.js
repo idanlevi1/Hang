@@ -6,4 +6,8 @@ export default {
 	t_back: 'חזור',
 
 	t_profile: 'פרופיל',
+
+	t_side_menu_home: 'בית',
+	t_side_menu_profile: 'פרופיל',
+	t_side_menu_: 'טקסט',
 }
