@@ -2,6 +2,7 @@ import { observable, action, computed, toJS, entries } from 'mobx';
 import { persist } from 'mobx-persist';
 import User from './User';
 import DeviceInfo from 'react-native-device-info'
+import moment from 'moment'
 
 class UserStore {
   @persist('object', User) @observable user = User;
@@ -46,7 +47,7 @@ class UserStore {
         deviceLocale: DeviceInfo.getDeviceLocale(),
         phoneNumber: DeviceInfo.getPhoneNumber(),
         deviceCountry: DeviceInfo.getDeviceCountry(),
-        firstInstallTime: DeviceInfo.getFirstInstallTime(),
+        firstInstallTime: moment(DeviceInfo.getFirstInstallTime()).format("DD-MM-YYYY"),
         brand: DeviceInfo.getBrand(),
         readableVersion: DeviceInfo.getReadableVersion()
       }

@@ -7,8 +7,7 @@ export const UserLevel = Object.freeze({
 export const AlertType = Object.freeze({
 	REGULAR: 'regular',
 	TWO_OPTIONS: 'two-options',
-	TEST_TERMS: 'test-terms',
-	ID_CHECK: 'id-check',
+	SETTINGS: 'settings',
 })
 
 export const GenderType = {

@@ -163,7 +163,21 @@ const Styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: GStyle.FbAlfi,
         writingDirection: 'rtl',
-
+    },
+    languageContainer: {
+        position: 'relative',
+        alignSelf: 'flex-start',
+        // flexDirection: 'row',
+        // justifyContent: 'space-around',
+        // width: '60%',
+        backgroundColor: '#ccc',
+        marginBottom: 10,
+    },
+    languageOption: {
+        width: 40
+    },
+    languageIcon: {
+        height: 35,
     },
 });
 

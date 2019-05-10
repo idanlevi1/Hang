@@ -10,19 +10,20 @@ import { create } from 'mobx-persist'
 const stores = { AppStore, UserStore, RoutingStore };
 const hydrate = create({ storage: AsyncStorage });
 
-hydrate('deviceInfo', UserStore).then(() => {
-  hydrate('user', UserStore).then(() => {
-    hydrate('rtl', AppStore).then(() => {
-      if (!AppStore.isRtl) {
-        I18nManager.forceRTL(true);
-        I18nManager.allowRTL(true);
-        AppStore.setRtl()
-        // RNRestart.Restart();
-      }
-      UserStore.hydrateDone();
+hydrate('language', AppStore).then(async () => {
+  await AppStore.getDictionary()
+  hydrate('deviceInfo', UserStore).then(() => {
+    hydrate('user', UserStore).then(() => {
+      hydrate('rtl', AppStore).then(() => {
+        if (!AppStore.isRtl && AppStore.language == 'he') {
+          console.log('RTL FORCE')
+          AppStore.switchToRTL()
+          // RNRestart.Restart();
+        }
+        UserStore.hydrateDone();
+      })
     })
   })
-
 })
 
 @observer
@@ -33,7 +34,6 @@ export default class Root extends React.Component {
   }
 
   async componentDidMount() {
-    await AppStore.getDictionary()
     // AppState.addEventListener('change', this._handleAppStateChange);
   }
 

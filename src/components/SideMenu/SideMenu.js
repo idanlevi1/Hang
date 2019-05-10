@@ -4,7 +4,11 @@ import styles from './style';
 import { NavigationActions } from 'react-navigation';
 import { ScrollView, View, TouchableOpacity, Text } from 'react-native';
 import i18n from '../../i18n'
+import { inject, observer } from 'mobx-react/native';
+import { AlertType } from '../../utils/Enums'
 
+@inject('AppStore')
+@observer
 class SideMenu extends Component {
     navigateToScreen = (route) => () => {
         const navigateAction = NavigationActions.navigate({
@@ -19,6 +23,10 @@ class SideMenu extends Component {
             <Text style={styles.textOption}>{text}</Text>
         </TouchableOpacity>
 
+    showSettingsAlert = () => {
+        this.props.AppStore.showAlert({ type: AlertType.SETTINGS });
+    }
+
     render() {
         const OptionItem = this.OptionItem
         return (
@@ -28,11 +36,12 @@ class SideMenu extends Component {
                     <View style={styles.hr} />
                     <OptionItem text={i18n.t('t_side_menu_profile')} iconName={'car-list'} onPress={() => this.props.navigation.navigate('Profile')} />
                     <View style={styles.hr} />
-                    <OptionItem text={'ThePlace'} iconName={'emergancy'} onPress={() => this.props.navigation.navigate('ThePlace')} />
+                    <OptionItem text={i18n.t('t_side_menu_the_place')} iconName={'emergancy'} onPress={() => this.props.navigation.navigate('ThePlace')} />
                     <View style={styles.hr} />
-                    <OptionItem text={'Promotions'} iconName={'tool'} onPress={() => this.props.navigation.navigate('Promotions')} />
+                    <OptionItem text={i18n.t('t_side_menu_promotions')} iconName={'tool'} onPress={() => this.props.navigation.navigate('Promotions')} />
                     <View style={styles.hr} />
-                    <OptionItem text={i18n.t('t_side_menu_')} iconName={'user'} onPress={() => this.props.navigation.navigate('Profile')} />
+                    <OptionItem text={i18n.t('t_side_menu_settings')} iconName={'user'} onPress={this.showSettingsAlert} />
+
                 </View>
             </ScrollView>
         );
