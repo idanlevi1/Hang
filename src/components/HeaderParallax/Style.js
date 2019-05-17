@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import  GStyle from '../../utils/GlobalStyles';
+import Color from "color";
 
 export default (styles = StyleSheet.create({
   container: {
@@ -18,25 +19,25 @@ export default (styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   navBar: {
-    height: GStyle.NAV_BAR_HEIGHT,
+    marginTop: GStyle.STATUS_BAR_HEIGHT + 5 ,
+    paddingHorizontal: 7,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: 'transparent',
   },
+  iconLeft: {
+    backgroundColor: GStyle.WHITE,
+    opacity: 0.1,
+  },  
   titleStyle: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
   },
-  hamburgerContainer: {
-    position: 'absolute',
-    zIndex: 100,
-    borderRadius: 30,
-    backgroundColor: GStyle.BEIGE,
-    top: GStyle.HEADER_HEIGHT / 2.5,
-    left: GStyle.WIDTH * .05,
-    padding: 5,
+  iconNavBar: {
+    borderRadius: 25,
+    backgroundColor: Color(GStyle.BEIGE).alpha(0.57),
   },
   hamburgerIcon: {
     height: 50,

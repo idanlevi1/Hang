@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import styles from './Style';
 import { HEADER_HEIGHT } from '../../utils/GlobalStyles';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { inject, observer } from 'mobx-react/native';
+import GStyle from '../../utils/GlobalStyles';
+import Color from "color";
 
 @inject('RoutingStore')
 @observer
@@ -15,18 +17,20 @@ export default class HeaderParallax extends React.Component {
       <View style={styles.navContainer}>
         <View style={styles.statusBar} />
         <View style={styles.navBar}>
+          <TouchableOpacity style={styles.iconNavBar} onPress={this.props.RoutingStore.openDrawer}>
+            <Image
+              resizeMode={'contain'}
+              source={require('../../../assets/images/icons/hamburger.png')}
+              style={styles.hamburgerIcon} />
+          </TouchableOpacity>
           {backButton && navigation ?
-            <TouchableOpacity style={styles.iconLeft} onPress={() => navigation.goBack()}>
-              <Text>Back</Text>
+            <TouchableOpacity style={styles.iconNavBar} onPress={() => navigation.goBack()}>
+              <Image
+                resizeMode={'contain'}
+                source={require('../../../assets/images/icons/back.png')}
+                style={styles.hamburgerIcon} />
             </TouchableOpacity>
             : <View />
-          }
-          {buttonItem ?
-            buttonItem
-            :
-            <TouchableOpacity style={styles.iconRight} onPress={() => { }}>
-              <Text>icon2</Text>
-            </TouchableOpacity>
           }
         </View>
       </View>
@@ -36,19 +40,12 @@ export default class HeaderParallax extends React.Component {
   render() {
     const { title, children, onScrollBeginDrag, onScrollEndDrag, navbarColor, imageScale, backgroundImage, backgroundColor } = this.props
     return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.hamburgerContainer} onPress={this.props.RoutingStore.openDrawer}>
-          <Image
-            resizeMode={'contain'}
-            source={require('../../../assets/images/icons/hamburger.png')}
-            style={styles.hamburgerIcon} />
-        </TouchableOpacity>
         <ReactNativeParallaxHeader
           headerMinHeight={HEADER_HEIGHT}
           headerMaxHeight={200}
           extraScrollHeight={20}
-          navbarColor={navbarColor || "#000"}
-          backgroundColor={backgroundColor || "#000"}
+          navbarColor={navbarColor || GStyle.BLACK}
+          backgroundColor={backgroundColor || Color(GStyle.BLACK).alpha(.48)}
           title={title || ''}
           titleStyle={styles.titleStyle}
           backgroundImage={backgroundImage}
@@ -63,7 +60,6 @@ export default class HeaderParallax extends React.Component {
             onScrollEndDrag: onScrollEndDrag,
           }}
         />
-      </View>
     );
   }
 }

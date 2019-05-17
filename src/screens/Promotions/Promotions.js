@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './Style';
 import { HeaderParallax } from '../../components';
+import GStyle from '../../utils/GlobalStyles';
+
 export default class Promotions extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,8 @@ export default class Promotions extends React.Component {
     return (
       <HeaderParallax
         backgroundImage={require('../../../assets/images/Header/promossions.jpg')}
+        backgroundColor={GStyle.PINK}
+        navbarColor={GStyle.PINK}
         title='Home'>
         <View style={styles.container}>
           <Text>Promossion</Text>
