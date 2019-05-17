@@ -41,9 +41,9 @@ class AppStore {
 
   @action
   async getDictionary() {
-    I18n.locale = this.language ? this.language : DeviceInfo.getDeviceLocale();
+    I18n.locale = 'he'// this.language ? this.language : DeviceInfo.getDeviceLocale();
     this.language = I18n.locale.substring(0, 2)
-    let res = {}// 
+    let res = {}
     switch (this.language) {
       case 'he':
         res = { profile: '.פרופיל' }//await Api.getDictionary()
@@ -108,6 +108,13 @@ class AppStore {
   @action
   onModalHide() {
     this.modalInAir = false;
+  }
+
+  @action
+  cleanAppLocalStorage() {
+    this.rtl = false;
+    this.language = null;
+    console.log('[AppStore]: cleanAppLocalStorage')
   }
 
   @computed

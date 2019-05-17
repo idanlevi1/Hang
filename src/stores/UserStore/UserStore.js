@@ -36,11 +36,12 @@ class UserStore {
 
   @action
   logout() {
-    this.token = null;
+    this.user = User;
   }
 
   @action
   saveUserInfoData() {
+    console.log('First Time ?', !!this.deviceInfo)
     if (!this.deviceInfo) {
       this.deviceInfo = {
         deviceId: DeviceInfo.getDeviceId(),
@@ -53,6 +54,14 @@ class UserStore {
       }
     }
     console.log('[deviceInfo]:', toJS(this.deviceInfo))
+  }
+
+  @action
+  cleanUserLocalStorage() {
+    this.user = User;
+    this.promotions = null;
+    this.deviceInfo = null;
+    console.log('[UserStore]: cleanUserLocalStorage')
   }
 
   @computed

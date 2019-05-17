@@ -7,7 +7,7 @@ import i18n from '../../i18n'
 import { inject, observer } from 'mobx-react/native';
 import { AlertType } from '../../utils/Enums'
 
-@inject('AppStore')
+@inject('AppStore', 'UserStore')
 @observer
 class SideMenu extends Component {
     navigateToScreen = (route) => () => {
@@ -27,6 +27,11 @@ class SideMenu extends Component {
         this.props.AppStore.showAlert({ type: AlertType.SETTINGS });
     }
 
+    cleanAll = () => {
+        this.props.UserStore.cleanUserLocalStorage()
+        this.props.AppStore.cleanAppLocalStorage()
+    }
+
     render() {
         const OptionItem = this.OptionItem
         return (
@@ -41,7 +46,8 @@ class SideMenu extends Component {
                     <OptionItem text={i18n.t('t_side_menu_promotions')} iconName={'tool'} onPress={() => this.props.navigation.navigate('Promotions')} />
                     <View style={styles.hr} />
                     <OptionItem text={i18n.t('t_side_menu_settings')} iconName={'user'} onPress={this.showSettingsAlert} />
-
+                    <View style={styles.hr} />
+                    <OptionItem text={'CLEAN APP'} iconName={'user'} onPress={this.cleanAll} />
                 </View>
             </ScrollView>
         );

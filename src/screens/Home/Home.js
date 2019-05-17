@@ -40,7 +40,6 @@ export default class HOME extends React.Component {
       <HeaderParallax
         backgroundImage={require('../../../assets/images/Header/dashboard.jpg')}
         backgroundColor={GStyle.BLACK}
-        navbarColor={GStyle.BLACK}
         title='Home'>
         <View style={{ backgroundColor: GStyle.BEIGE_LIGHTEN }}>
           <TouchableOpacity onPress={this.onShare}>
