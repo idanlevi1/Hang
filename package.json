@@ -11,7 +11,8 @@
     "rmnode": "rm -rf node_modules/ && npm i",
     "ra": "react-native run-android",
     "ri": "react-native run-ios --simulator='iPhone 8'",
-    "rix": "react-native run-ios --simulator='iPhone X'"
+    "rix": "react-native run-ios --simulator='iPhone X'",
+    "create-screen-folder": "cd src/screens; mkdir ClassName; cd ClassName; cd ..; cd ..;"
   },
   "dependencies": {
     "appcenter": "2.0.0",

@@ -3,6 +3,7 @@ import DashboardStack from './stacks/DashboardStack';
 import ProfileStack from './stacks/ProfileStack';
 import ThePlaceStack from './stacks/ThePlaceStack';
 import PromotionsStack from './stacks/PromotionsStack';
+import {Scanner} from '../screens';
 
 export default MainStackNavigator = createStackNavigator(
 	{
@@ -10,6 +11,7 @@ export default MainStackNavigator = createStackNavigator(
 		Profile: ProfileStack,
 		ThePlace: ThePlaceStack,
 		Promotions: PromotionsStack,
+		Scanner: Scanner,
 	},
 	{
 		headerMode: 'none',

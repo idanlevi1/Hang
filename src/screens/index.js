@@ -6,5 +6,6 @@ import Splash from './Splash';
 import ThePlace from './ThePlace';
 import Promotions from './Promotions';
 import ProfileEdit from './ProfileEdit';
+import Scanner from './Scanner';
 
-export { ProfileEdit, Promotions, ThePlace, Home, Information, Login, Profile, Splash };
+export { Scanner, ProfileEdit, Promotions, ThePlace, Home, Information, Login, Profile, Splash };

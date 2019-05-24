@@ -47,6 +47,8 @@ class SideMenu extends Component {
                     <View style={styles.hr} />
                     <OptionItem text={i18n.t('t_side_menu_settings')} iconName={'user'} onPress={this.showSettingsAlert} />
                     <View style={styles.hr} />
+                    <OptionItem text={'Scan'} iconName={'user'}  onPress={() => this.props.navigation.navigate('Scanner')} />
+                    <View style={styles.hr} />
                     <OptionItem text={'CLEAN APP'} iconName={'user'} onPress={this.cleanAll} />
                 </View>
             </ScrollView>

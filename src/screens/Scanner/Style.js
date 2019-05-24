@@ -1,0 +1,11 @@
+import { StyleSheet } from 'react-native';
+import GStyle from '../../utils/GlobalStyles';
+
+export default styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		backgroundColor: GStyle.GREEN_LIGHTEN,
+	},
+});
