@@ -106,6 +106,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {
@@ -143,6 +144,7 @@ configurations.all {
 }
 
 dependencies {
+    compile project(':react-native-camera')
     compile project(':appcenter-crashes')
     compile project(':appcenter-analytics')
     compile project(':appcenter')

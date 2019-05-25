@@ -38,28 +38,28 @@ export default class HeaderParallax extends React.Component {
   }
 
   render() {
-    const { title, children, onScrollBeginDrag, onScrollEndDrag, navbarColor, imageScale, backgroundImage, backgroundColor } = this.props
+    const { title, children, onScrollBeginDrag, onScrollEndDrag, navbarColor, imageScale, backgroundImage, backgroundColor, headerMinHeight, headerMaxHeight } = this.props
     return (
-        <ReactNativeParallaxHeader
-          headerMinHeight={HEADER_HEIGHT}
-          headerMaxHeight={200}
-          extraScrollHeight={20}
-          navbarColor={navbarColor || GStyle.BLACK}
-          backgroundColor={backgroundColor || Color(GStyle.BLACK).alpha(.48)}
-          title={title || ''}
-          titleStyle={styles.titleStyle}
-          backgroundImage={backgroundImage}
-          backgroundImageScale={imageScale || 1.2}
-          renderNavBar={this.renderNavBar}
-          renderContent={() => children}
-          containerStyle={styles.container}
-          contentContainerStyle={styles.contentContainer}
-          innerContainerStyle={styles.container}
-          scrollViewProps={{
-            onScrollBeginDrag: onScrollBeginDrag,
-            onScrollEndDrag: onScrollEndDrag,
-          }}
-        />
+      <ReactNativeParallaxHeader
+        headerMinHeight={headerMinHeight || HEADER_HEIGHT}
+        headerMaxHeight={headerMaxHeight || 200}
+        extraScrollHeight={20}
+        navbarColor={navbarColor || GStyle.BLACK}
+        backgroundColor={backgroundColor || Color(GStyle.BLACK).alpha(.48)}
+        title={title || ''}
+        titleStyle={styles.titleStyle}
+        backgroundImage={backgroundImage}
+        backgroundImageScale={imageScale || 1.2}
+        renderNavBar={this.renderNavBar}
+        renderContent={() => children}
+        containerStyle={styles.container}
+        contentContainerStyle={styles.contentContainer}
+        innerContainerStyle={styles.container}
+        scrollViewProps={{
+          onScrollBeginDrag: onScrollBeginDrag,
+          onScrollEndDrag: onScrollEndDrag,
+        }}
+      />
     );
   }
 }

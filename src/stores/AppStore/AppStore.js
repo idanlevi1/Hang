@@ -65,7 +65,6 @@ class AppStore {
 
   @action
   setAlertRef(alertRef) {
-    console.log('alert ref - AppStore');
     this.alertRef = alertRef;
   }
 
@@ -95,13 +94,11 @@ class AppStore {
 
   @action
   showLoader() {
-    console.log('showLoader')
     this.loaderVisible = true;
   }
 
   @action
   hideLoader() {
-    console.log('hideLoader')
     this.loaderVisible = false;
   }
 

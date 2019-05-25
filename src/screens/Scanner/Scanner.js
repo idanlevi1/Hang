@@ -1,48 +1,73 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, Linking } from 'react-native';
 import styles from './Style';
 import { HeaderParallax, Button } from '../../components';
 import GStyle from '../../utils/GlobalStyles';
 import { inject, observer } from 'mobx-react/native';
-import { AlertType, UserLevel } from '../../utils/Enums'
+import { AlertType } from '../../utils/Enums'
 import i18n from '../../i18n';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import isEmpty from 'lodash/isEmpty';
 
 @inject('AppStore')
 @observer
 export default class Scanner extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			scanResult: {}
+		};
 	}
 
 	componentDidMount = () => {
 		console.log('[Scanner]');
 	}
 
-	onEditScanner = () => {
-		this.props.AppStore.showLoader();
-		setTimeout(() => {
-			this.props.AppStore.showAlert({ type: AlertType.REGULAR, title: i18n.t('t_alert_general_title'), content: i18n.t('t_alert_general_conetent'), buttonText: i18n.t('t_close'), onClose: () => { console.log('Alert closed') } });
-			this.props.AppStore.hideLoader();
-		}, 1000);
+	onScanner = (scanResult) => {
+		this.setState({ scanResult })
+		console.log('onScanner:', scanResult.data)
+		// Linking
+		// 	.openURL(scanResult.data)
+		// 	.catch(err => console.error('An error occured', err));
+		// this.props.AppStore.showLoader();
+		// setTimeout(() => {
+		// this.props.AppStore.hideLoader();
+		this.props.AppStore.showAlert({ type: AlertType.REGULAR, title: i18n.t('t_alert_general_title'), content: scanResult.data, buttonText: i18n.t('t_close'), onClose: () => { } });
+		// }, 1000);
 	}
 
-	onShowAlert = () => {
-		this.props.AppStore.showAlert({ type: AlertType.REGULAR, title: i18n.t('t_alert_general_title'), content: i18n.t('t_alert_general_conetent'), buttonText: i18n.t('t_close'), onClose: () => { console.log('Alert closed') } });
+	onScanMore = () => {
+		this.setState({ scanResult: {} })
 	}
 
 	render() {
+		const { scanResult } = this.state
 		return (
 			<HeaderParallax
-				backgroundColor={GStyle.BLACK}
-				navbarColor={GStyle.BLACK}
+				backgroundColor={GStyle.CYAN}
+				navbarColor={GStyle.CYAN}
 				title={'SCANNER'}
+				headerMaxHeight={GStyle.HEADER_HEIGHT}
 			>
 				<View style={styles.container}>
-					<Button text={'Edit Scanner'} onPress={this.onEditScanner} />
-					<Text style={{ fontSize: 24, color: GStyle.BLACK }}>Scanner</Text>
-
-					{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(e => <Text key={e} style={{ color: GStyle.BLACK, fontSize: 24, padding: 5, margin: 10, borderBottomWidth: 1 }}>{e}</Text>)}
+					{isEmpty(scanResult) ?
+						// https://github.com/moaazsidat/react-native-qrcode-scanner
+						<React.Fragment>
+							<Text style={styles.qrTitleText}>Scan the <Text style={styles.textBold}>QR Code</Text> on your card</Text>
+							<QRCodeScanner
+								onRead={this.onScanner}
+								containerStyle={styles.scannerContainer}
+								cameraStyle={styles.camera}
+								showMarker={false}
+							/>
+							<Text style={styles.qrTitleText}>More information</Text>
+						</React.Fragment>
+						:
+						<React.Fragment>
+							<Text style={{ fontSize: 24, color: GStyle.BLACK }}>{scanResult.data}</Text>
+							<Button text={'Scan More'} onPress={this.onScanMore} />
+						</React.Fragment>
+					}
 				</View>
 			</HeaderParallax>
 		);
