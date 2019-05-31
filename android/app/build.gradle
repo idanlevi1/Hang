@@ -126,11 +126,26 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
-    buildTypes {
+    // buildTypes {
+    //     release {
+    //         minifyEnabled enableProguardInReleaseBuilds
+    //         proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+    //         // signingConfig signingConfigs.release
+    //     }
+    // }
+     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles 'proguard-rules.pro'
+        }
         release {
+            // minifyEnabled true
+            proguardFiles 'proguard-rules.pro'
+            debuggable true
+
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            // signingConfig signingConfigs.release
+            // signingConfig signingConfigs.config
         }
     }
     // applicationVariants are e.g. debug, release
